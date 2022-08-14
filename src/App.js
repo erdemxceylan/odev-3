@@ -1,8 +1,9 @@
-import './App.css';
+import './App.scss';
+import GamePage from './pages/Game';
 
 function App() {
    return (
-      <div>Math Game</div>
+      <GamePage />
    );
 }
 

@@ -1,0 +1,10 @@
+@import '../../styles/variables.scss';
+
+div svg {
+  * {
+    fill: map-get($colors, svg);
+  }
+  rect:first-of-type {
+    fill: map-get($colors, bg);
+  }
+}
