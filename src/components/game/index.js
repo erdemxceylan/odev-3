@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Legend from '../legend';
 import Choices from '../choices';
 import * as svgs from '../../assets/svgs';
 import './styles.scss';
@@ -8,7 +9,6 @@ const INCORRECT = 'incorrect';
 const SCHEMA = 'schema';
 const schema = { success: `${SCHEMA} ${CORRECT}`, fail: `${SCHEMA} ${INCORRECT}`, default: SCHEMA };
 const face = { success: svgs.face.happy, fail: svgs.face.sad, default: svgs.face.thinking };
-const legend = [{ title: 'Puan', value: 120 }, { title: 'Tur', value: 2 }, { title: 'Soru', value: 7 },];
 const question = { first: 7, operation: 'x', second: 8, points: 3, choices: [49, 64, 56] };
 
 export default function Game() {
@@ -29,7 +29,7 @@ export default function Game() {
          <div className={set(schema)}>
             {svgs.schema}
             {set(face)}
-            {legend.map((item, index) => <p className='legend' key={`legend-${index}`}>{item.title}: {item.value}</p>)}
+            <Legend />
             <Choices choices={choices} isSelected={isSelected} onClick={clickHandler} />
             <p className='question'>{`${first} ${operation} ${second}`}</p>
             {/* <div className='check'> */}
