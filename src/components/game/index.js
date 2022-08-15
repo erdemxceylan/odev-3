@@ -12,33 +12,64 @@ const randomIndexes = [randomIndex, modulo3(randomIndex + iterator), modulo3(ran
 const legend = [{ title: 'Puan', value: 120 }, { title: 'Tur', value: 2 }, { title: 'Soru', value: 7 },];
 const question = { first: 7, operation: 'x', second: 8, points: 3, choices: [49, 64, 56] };
 const correctIndex = 2;
-const CORRECT = 'Correct';
-const INCORRECT = 'Incorrect';
+const CORRECT = 'correct';
+const INCORRECT = 'incorrect';
+// const SELECTED = 'selected';
+let schemaClass;
+let svg;
 
 export default function Game() {
    const [answer, setAnswer] = useState(null);
+   // const [isRoundOver, setIsRoundOver] = useState(false);
+
+   function clickHandler(target, isCorrect) {
+      console.log(target);
+      if (!answer) {
+         setAnswer(isCorrect ? CORRECT : INCORRECT);
+      }
+   }
+
+   switch (answer) {
+      case CORRECT:
+         schemaClass = CORRECT;
+         svg = svgs.face.happy;
+         break;
+      case INCORRECT:
+         schemaClass = INCORRECT;
+         svg = svgs.face.sad;
+         break;
+      default:
+         schemaClass = null;
+         svg = svgs.face.thinking;
+         break;
+   }
 
    return (
       <>
          <div>
-            {svgs.schema}
-            {answer === CORRECT ? svgs.face.happy : answer === INCORRECT ? svgs.face.sad : svgs.face.thinking}
+            {svgs.schema(schemaClass)}
+            {svg}
             {legend.map((item, index) => <p className='legend' key={`legend-${index}`}>{item.title}: {item.value}</p>)}
-            {question.choices.map((choice, index) => (
-               <Choice
-                  key={`choice-${index}`}
-                  choice={choice}
-                  index={randomIndexes[index]}
-                  onClick={() => !answer && setAnswer(question.choices[correctIndex] === choice ? CORRECT : INCORRECT)}
-               />
-            ))}
+            {question.choices.map((choice, index) => {
+               return (
+                  <Choice
+                     // className={answer ? SELECTED : answer === CORRECT ? svgs.face.sad : svgs.face.thinking}
+                     key={`choice-${index}`}
+                     choice={choice}
+                     index={randomIndexes[index]}
+                     // isCorrect={isCorrect}
+                     onClick={(e) => clickHandler(e.target, question.choices[correctIndex] === choice)}
+                  />
+               );
+            }
+            )}
             <p className='question'>{`${question.first} ${question.operation} ${question.second}`}</p>
          </div>
          {/* {answer === CORRECT ? svgs.checkCorrect : answer === INCORRECT ? svgs.checkIncorrect : svgs.check} */}
          {/* {svgs.check}
          {svgs.checkIncorrect}
          {svgs.checkCorrect} */}
-         {/* <div style={{ height: '60rem' }}></div> */}
+         <div style={{ height: '60rem' }}></div>
       </>
    );
 }

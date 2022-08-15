@@ -2,12 +2,8 @@
 
 div {
   svg {
-    * {
+    rect:first-of-type ~ * {
       fill: map-get($colors, svg);
-    }
-
-    rect:first-of-type {
-      fill: map-get($colors, bg);
     }
   }
 
@@ -38,4 +34,16 @@ div {
   p:nth-child(5) {
     left: 1714px;
   }
+}
+
+.correct {
+  fill: map-get($colors, correct);
+}
+
+.incorrect {
+  fill: map-get($colors, incorrect);
+}
+
+.selected {
+  fill: map-get($colors, bg);
 }

@@ -18,6 +18,7 @@ export default function Choice(props) {
 
    return (
       <div
+         // className={className ? className : 'selected'}
          style={{ position: 'absolute', cursor: 'pointer', ...circlePositions[index] }}
          onClick={onClick}
       >
