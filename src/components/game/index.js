@@ -31,23 +31,23 @@ export default function Game() {
 
    switch (answer) {
       case CORRECT:
-         schemaClass = CORRECT;
          svg = svgs.face.happy;
+         schemaClass = `schema ${CORRECT}`;
          break;
       case INCORRECT:
-         schemaClass = INCORRECT;
          svg = svgs.face.sad;
+         schemaClass = `schema ${INCORRECT}`;
          break;
       default:
-         schemaClass = null;
+         schemaClass = 'schema';
          svg = svgs.face.thinking;
          break;
    }
 
    return (
       <>
-         <div>
-            {svgs.schema(schemaClass)}
+         <div className={schemaClass}>
+            {svgs.schema}
             {svg}
             {legend.map((item, index) => <p className='legend' key={`legend-${index}`}>{item.title}: {item.value}</p>)}
             {question.choices.map((choice, index) => {
@@ -69,7 +69,7 @@ export default function Game() {
          {/* {svgs.check}
          {svgs.checkIncorrect}
          {svgs.checkCorrect} */}
-         <div style={{ height: '60rem' }}></div>
+         {/* <div style={{ height: '60rem' }}></div> */}
       </>
    );
 }

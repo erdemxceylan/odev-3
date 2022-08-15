@@ -1,10 +1,13 @@
 @import '../../styles/variables.scss';
 
-div {
-  svg {
-    rect:first-of-type ~ * {
-      fill: map-get($colors, svg);
-    }
+.schema {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  background-color: map-get($colors, bg);
+
+  svg * {
+    fill: map-get($colors, svg);
   }
 
   p {
@@ -37,13 +40,13 @@ div {
 }
 
 .correct {
-  fill: map-get($colors, correct);
+  background-color: map-get($colors, correct);
 }
 
 .incorrect {
-  fill: map-get($colors, incorrect);
+  background-color: map-get($colors, incorrect);
 }
 
 .selected {
-  fill: map-get($colors, bg);
+  background-color: map-get($colors, bg);
 }

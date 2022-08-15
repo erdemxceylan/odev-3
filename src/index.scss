@@ -1,11 +1,15 @@
 @import './styles/variables.scss';
 
 body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   margin: 0;
+  color: #fff;
   font-family: 'Handlee', cursive;
   font-style: normal;
   font-weight: 400;
-  color: #fff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
