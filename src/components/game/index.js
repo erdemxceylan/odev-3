@@ -64,12 +64,14 @@ export default function Game() {
             }
             )}
             <p className='question'>{`${question.first} ${question.operation} ${question.second}`}</p>
+            {/* <div className='check'> */}
+            {/* {answer === CORRECT ? svgs.checkCorrect : answer === INCORRECT ? svgs.checkIncorrect : svgs.check} */}
+            {/* {svgs.check} */}
+            {/* {svgs.checkCorrect} */}
+            {/* {svgs.checkIncorrect} */}
+            {/* </div> */}
+            {/* <div style={{ height: '60rem' }}></div> */}
          </div>
-         {/* {answer === CORRECT ? svgs.checkCorrect : answer === INCORRECT ? svgs.checkIncorrect : svgs.check} */}
-         {/* {svgs.check}
-         {svgs.checkIncorrect}
-         {svgs.checkCorrect} */}
-         {/* <div style={{ height: '60rem' }}></div> */}
       </>
    );
 }

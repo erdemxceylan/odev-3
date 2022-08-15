@@ -21,16 +21,7 @@
   left: 770px;
 }
 
-.check {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 100;
-
-  * {
-    fill: yellow;
-  }
-
+.check-svg {
   rect:first-of-type {
     fill-opacity: 0%;
   }

@@ -50,3 +50,12 @@
 .selected {
   background-color: map-get($colors, bg);
 }
+
+.check {
+  position: absolute;
+  top: 0;
+
+  svg * {
+    fill: yellow;
+  }
+}
