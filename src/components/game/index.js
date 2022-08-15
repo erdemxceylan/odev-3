@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './styles.scss';
-import * as svgs from '../../assets/svgs';
 import Choice from '../choice';
+import * as svgs from '../../assets/svgs';
+import './styles.scss';
 
 // create random indexes to switch the position of the correct answer
 const randomIndex = Math.floor(3 * Math.random());                   // 0, 1, or 2
@@ -11,6 +11,7 @@ const randomIndexes = [randomIndex, modulo3(randomIndex + iterator), modulo3(ran
 
 const legend = [{ title: 'Puan', value: 120 }, { title: 'Tur', value: 2 }, { title: 'Soru', value: 7 },];
 const question = { first: 7, operation: 'x', second: 8, points: 3, choices: [49, 64, 56] };
+const correctIndex = 2;
 const CORRECT = 'Correct';
 const INCORRECT = 'Incorrect';
 
@@ -23,14 +24,21 @@ export default function Game() {
             {svgs.schema}
             {answer === CORRECT ? svgs.face.happy : answer === INCORRECT ? svgs.face.sad : svgs.face.thinking}
             {legend.map((item, index) => <p className='legend' key={`legend-${index}`}>{item.title}: {item.value}</p>)}
-            {question.choices.map((choice, index) => <Choice key={`choice-${index}`} choice={choice} index={randomIndexes[index]} />)}
+            {question.choices.map((choice, index) => (
+               <Choice
+                  key={`choice-${index}`}
+                  choice={choice}
+                  index={randomIndexes[index]}
+                  onClick={() => !answer && setAnswer(question.choices[correctIndex] === choice ? CORRECT : INCORRECT)}
+               />
+            ))}
             <p className='question'>{`${question.first} ${question.operation} ${question.second}`}</p>
          </div>
-         {answer === CORRECT ? svgs.checkCorrect : answer === INCORRECT ? svgs.checkIncorrect : svgs.check}
+         {/* {answer === CORRECT ? svgs.checkCorrect : answer === INCORRECT ? svgs.checkIncorrect : svgs.check} */}
          {/* {svgs.check}
          {svgs.checkIncorrect}
          {svgs.checkCorrect} */}
-         <div style={{ height: '60rem' }}></div>
+         {/* <div style={{ height: '60rem' }}></div> */}
       </>
    );
 }

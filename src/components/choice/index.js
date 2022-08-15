@@ -14,10 +14,13 @@ const choicePositions = [
 ];
 
 export default function Choice(props) {
-   const { choice, index } = props;
+   const { choice, index, onClick } = props;
 
    return (
-      <div style={{ position: 'absolute', ...circlePositions[index] }}>
+      <div
+         style={{ position: 'absolute', cursor: 'pointer', ...circlePositions[index] }}
+         onClick={onClick}
+      >
          {circle}
          <p style={{ fontSize: '90px', ...choicePositions[index] }}>{choice}</p>
       </div>
