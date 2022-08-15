@@ -5,8 +5,56 @@ div {
     * {
       fill: map-get($colors, svg);
     }
+
     rect:first-of-type {
       fill: map-get($colors, bg);
     }
+  }
+
+  p {
+    position: absolute;
+    margin: 0;
+  }
+
+  .legend {
+    top: 56px;
+    font-size: 48px;
+  }
+
+  .choice {
+    font-size: 90px;
+  }
+
+  .question {
+    top: 320px;
+    left: 228px;
+    font-size: 128px;
+  }
+
+  p:nth-child(3) {
+    left: 1210px;
+  }
+
+  p:nth-child(4) {
+    left: 1489px;
+  }
+
+  p:nth-child(5) {
+    left: 1714px;
+  }
+
+  p:nth-child(6) {
+    top: 355px;
+    left: 1223px;
+  }
+
+  p:nth-child(7) {
+    top: 480px;
+    left: 1585px;
+  }
+
+  p:nth-child(8) {
+    top: 660px;
+    left: 1304px;
   }
 }
