@@ -14,12 +14,12 @@ const question = { first: 7, operation: 'x', second: 8, points: 3, choices: [49,
 const correctIndex = 2;
 const CORRECT = 'correct';
 const INCORRECT = 'incorrect';
-let schemaClass;
-let svg;
+const SCHEMA = 'schema';
 
 export default function Game() {
    const [answer, setAnswer] = useState(null);
    const [isSelected, setIsSelected] = useState(null);
+   let schemaClass; let svg;
 
    function clickHandler(isCorrect, index) {
       if (!answer) {
@@ -31,14 +31,14 @@ export default function Game() {
    switch (answer) {
       case CORRECT:
          svg = svgs.face.happy;
-         schemaClass = `schema ${CORRECT}`;
+         schemaClass = `${SCHEMA} ${CORRECT}`;
          break;
       case INCORRECT:
          svg = svgs.face.sad;
-         schemaClass = `schema ${INCORRECT}`;
+         schemaClass = `${SCHEMA} ${INCORRECT}`;
          break;
       default:
-         schemaClass = 'schema';
+         schemaClass = SCHEMA;
          svg = svgs.face.thinking;
          break;
    }
