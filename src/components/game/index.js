@@ -9,7 +9,7 @@ const CORRECT = 'Correct';
 const INCORRECT = 'Incorrect';
 
 export default function Game() {
-   const [answer, setAnswer] = useState(INCORRECT);
+   const [answer, setAnswer] = useState(null);
 
    return (
       <>
@@ -20,7 +20,10 @@ export default function Game() {
             {choices.map((choice, index) => <p className='choice' key={`choice-${index}`}>{choice}</p>)}
             <p className='question'>{`${question.first} ${question.operation} ${question.second}`}</p>
          </div>
-         {svgs.check}
+         {answer === CORRECT ? svgs.checkCorrect : answer === INCORRECT ? svgs.checkIncorrect : svgs.check}
+         {/* {svgs.check}
+         {svgs.checkIncorrect}
+         {svgs.checkCorrect} */}
          <div style={{ height: '20rem' }}></div>
       </>
    );
