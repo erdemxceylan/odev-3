@@ -14,27 +14,19 @@ const choicePositions = [
    { top: '49px', left: '49px' }
 ];
 
-
 export default function Choice(props) {
    const { choice, index, selected, correct, onClick } = props;
-   let choiceClass;
-
-   console.log(selected);
-
-   if (selected !== null) {
-      if (selected) choiceClass = 'selected-choice';
-      if (correct && !selected) choiceClass = 'correct-choice';
-      if (!correct && !selected) choiceClass = null;
-   }
+   let choiceClass = 'choice';
+   choiceClass += selected === null ? '' : selected ? ' selected-choice' : correct ? ' correct-choice' : '';
 
    return (
       <div
          className={choiceClass}
-         style={{ position: 'absolute', cursor: 'pointer', ...circlePositions[index] }}
+         style={circlePositions[index]}
          onClick={onClick}
       >
          {circle}
-         <p style={{ fontSize: '90px', ...choicePositions[index] }}>{choice}</p>
+         <p style={choicePositions[index]}>{choice}</p>
       </div>
    );
 }

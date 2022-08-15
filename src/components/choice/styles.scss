@@ -1,5 +1,14 @@
 @import '../../styles/variables.scss';
 
+.choice {
+  position: absolute;
+  cursor: pointer;
+
+  p {
+    font-size: 90px;
+  }
+}
+
 .correct-choice {
   svg path {
     fill: map-get($colors, correct) !important;
