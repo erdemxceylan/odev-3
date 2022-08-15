@@ -14,18 +14,17 @@ const question = { first: 7, operation: 'x', second: 8, points: 3, choices: [49,
 const correctIndex = 2;
 const CORRECT = 'correct';
 const INCORRECT = 'incorrect';
-// const SELECTED = 'selected';
 let schemaClass;
 let svg;
 
 export default function Game() {
    const [answer, setAnswer] = useState(null);
-   // const [isRoundOver, setIsRoundOver] = useState(false);
+   const [isSelected, setIsSelected] = useState(null);
 
-   function clickHandler(target, isCorrect) {
-      console.log(target);
+   function clickHandler(isCorrect, index) {
       if (!answer) {
          setAnswer(isCorrect ? CORRECT : INCORRECT);
+         setIsSelected(index);
       }
    }
 
@@ -51,14 +50,15 @@ export default function Game() {
             {svg}
             {legend.map((item, index) => <p className='legend' key={`legend-${index}`}>{item.title}: {item.value}</p>)}
             {question.choices.map((choice, index) => {
+               const isCorrect = question.choices[correctIndex] === choice;
                return (
                   <Choice
-                     // className={answer ? SELECTED : answer === CORRECT ? svgs.face.sad : svgs.face.thinking}
                      key={`choice-${index}`}
                      choice={choice}
                      index={randomIndexes[index]}
-                     // isCorrect={isCorrect}
-                     onClick={(e) => clickHandler(e.target, question.choices[correctIndex] === choice)}
+                     selected={isSelected !== null ? isSelected === index : null}
+                     correct={isCorrect}
+                     onClick={() => clickHandler(isCorrect, index)}
                   />
                );
             }

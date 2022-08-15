@@ -1,0 +1,17 @@
+@import '../../styles/variables.scss';
+
+.correct-choice {
+  svg path {
+    fill: map-get($colors, correct) !important;
+  }
+}
+
+.selected-choice {
+  svg path {
+    fill: map-get($colors, bg) !important;
+  }
+
+  p {
+    color: map-get($colors, bg) !important;
+  }
+}

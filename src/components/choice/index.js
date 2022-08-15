@@ -1,5 +1,6 @@
 import React from 'react';
 import { circle } from '../../assets/svgs';
+import './styles.scss';
 
 const circlePositions = [
    { top: '320px', left: '1176.5px' },
@@ -13,12 +14,22 @@ const choicePositions = [
    { top: '49px', left: '49px' }
 ];
 
+
 export default function Choice(props) {
-   const { choice, index, onClick } = props;
+   const { choice, index, selected, correct, onClick } = props;
+   let choiceClass;
+
+   console.log(selected);
+
+   if (selected !== null) {
+      if (selected) choiceClass = 'selected-choice';
+      if (correct && !selected) choiceClass = 'correct-choice';
+      if (!correct && !selected) choiceClass = null;
+   }
 
    return (
       <div
-         // className={className ? className : 'selected'}
+         className={choiceClass}
          style={{ position: 'absolute', cursor: 'pointer', ...circlePositions[index] }}
          onClick={onClick}
       >

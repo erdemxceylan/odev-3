@@ -47,10 +47,6 @@
   background-color: map-get($colors, incorrect);
 }
 
-.selected {
-  background-color: map-get($colors, bg);
-}
-
 .check {
   position: absolute;
   top: 0;
