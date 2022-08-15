@@ -9,17 +9,21 @@ const iterator = Math.floor(2 * Math.random()) % 2 === 0 ? -1 : 1;   // -1 or 1
 const modulo3 = n => ((n % 3) + 3) % 3;                              // takes mod 3 of a number
 const randomIndexes = [randomIndex, modulo3(randomIndex + iterator), modulo3(randomIndex + 2 * iterator)]; // permutations of the set {0, 1, 2}
 
-const legend = [{ title: 'Puan', value: 120 }, { title: 'Tur', value: 2 }, { title: 'Soru', value: 7 },];
 const question = { first: 7, operation: 'x', second: 8, points: 3, choices: [49, 64, 56] };
 const correctIndex = 2;
+
 const CORRECT = 'correct';
 const INCORRECT = 'incorrect';
 const SCHEMA = 'schema';
+const schema = { success: `${SCHEMA} ${CORRECT}`, fail: `${SCHEMA} ${INCORRECT}`, default: SCHEMA };
+const face = { success: svgs.face.happy, fail: svgs.face.sad, default: svgs.face.thinking };
+const legend = [{ title: 'Puan', value: 120 }, { title: 'Tur', value: 2 }, { title: 'Soru', value: 7 },];
 
 export default function Game() {
    const [answer, setAnswer] = useState(null);
    const [isSelected, setIsSelected] = useState(null);
-   let schemaClass; let svg;
+   const set = values => answer === CORRECT ? values.success : answer === INCORRECT ? values.fail : values.default;
+   const { first, operation, second, choices } = question;
 
    function clickHandler(isCorrect, index) {
       if (!answer) {
@@ -28,29 +32,14 @@ export default function Game() {
       }
    }
 
-   switch (answer) {
-      case CORRECT:
-         svg = svgs.face.happy;
-         schemaClass = `${SCHEMA} ${CORRECT}`;
-         break;
-      case INCORRECT:
-         svg = svgs.face.sad;
-         schemaClass = `${SCHEMA} ${INCORRECT}`;
-         break;
-      default:
-         schemaClass = SCHEMA;
-         svg = svgs.face.thinking;
-         break;
-   }
-
    return (
       <>
-         <div className={schemaClass}>
+         <div className={set(schema)}>
             {svgs.schema}
-            {svg}
+            {set(face)}
             {legend.map((item, index) => <p className='legend' key={`legend-${index}`}>{item.title}: {item.value}</p>)}
-            {question.choices.map((choice, index) => {
-               const isCorrect = question.choices[correctIndex] === choice;
+            {choices.map((choice, index) => {
+               const isCorrect = choices[correctIndex] === choice;
                return (
                   <Choice
                      key={`choice-${index}`}
@@ -63,7 +52,7 @@ export default function Game() {
                );
             }
             )}
-            <p className='question'>{`${question.first} ${question.operation} ${question.second}`}</p>
+            <p className='question'>{`${first} ${operation} ${second}`}</p>
             {/* <div className='check'> */}
             {/* {answer === CORRECT ? svgs.checkCorrect : answer === INCORRECT ? svgs.checkIncorrect : svgs.check} */}
             {/* {svgs.check} */}
