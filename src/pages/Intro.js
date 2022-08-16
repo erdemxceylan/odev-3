@@ -2,6 +2,8 @@ import React from 'react';
 
 export default function IntroPage() {
    return (
-      <div>Intro</div>
+      <div style={{ fontSize: '20rem' }}>
+         <p>Intro</p>
+      </div>
    );
 }
